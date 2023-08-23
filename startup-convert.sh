@@ -5,19 +5,19 @@
 # make sure to fill out BINARY_DIRECTORY with a path to the folder that contains both files
 # when filling out the teams provisioning details, use -1 for optional integers, empty quotes "" for optional strings.
 
-TEAM_ID="lastpass"
+TEAM_ID="1yVIjVfIzwz1keYaPOaXM7PTpao"
 TEAM_KEY="tapi_2UNiDcE5knOpfq7Wyslt8Wdn42T"   
 APP_RULE_ID="tar_2KaPxe720b5CNKhy6ii6VHDtNtX"
 GUEST_ACCESS="0"
 USER_ID="-1"
-TEAM_GROUP_ID="20961"
-USER_EMAIL='""'
+TEAM_GROUP_ID="21758"
+
 
 
 curl https://builds.parsecgaming.com/package/parsec-macos-startup.pkg -o "/Users/Shared/parsec-macos-startup.pkg"
 sleep 1
        
-BINARY_DIRECTORY="Users/remote/Downloads/TeamsInstall"
+BINARY_DIRECTORY="/Users/remote/Downloads/TeamsInstall"
 INSTALL_PATH="/Users/Shared/.parsec"
 
 
@@ -35,7 +35,7 @@ do
 done
 launchctl unload -w /Library/LaunchAgents/com.parsec.app.plist
 sudo xattr -r -d com.apple.quarantine $BINARY_DIRECTORY/teams
-sudo $BINARY_DIRECTORY/teams kessel-api.parsec.app $TEAM_KEY $TEAM_ID $APP_RULE_ID $GUEST_ACCESS $USER_ID $TEAM_GROUP_ID $USER_EMAIL "$INSTALL_PATH/user.bin" 
+sudo $BINARY_DIRECTORY/teams kessel-api.parsec.app $TEAM_KEY $TEAM_ID $APP_RULE_ID $GUEST_ACCESS $USER_ID $TEAM_GROUP_ID "$INSTALL_PATH/user.bin" 
 echo 'app_channel=client_multiuser' >> "$INSTALL_PATH/config.txt"
 echo 'app_host=1' >> "$INSTALL_PATH/config.json"
 sudo rm -r /Users/$USER/Library/Caches/tv.parsec.www 

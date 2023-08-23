@@ -1,0 +1,26 @@
+[
+	"See https://parsec.app/config for documentation and example. JSON must be valid before saving or file be will be erased.",
+	{
+		"host_audio_id": {
+			"value": "BlackHole2ch_UID"
+		},
+		"encoder_bitrate": {
+			"value": 30
+		},
+		"app_channel": {
+			"value": "release19"
+		},
+		"host_prevent_sleep": {
+			"value": true
+		},
+		"app_host": {
+			"value": true
+		},
+		"network_raw_audio": {
+			"value": true
+		},
+		"app_changelog_ver": {
+			"value": 8
+		}
+	}
+]

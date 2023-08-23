@@ -5,24 +5,6 @@
 # make sure to fill out BINARY_DIRECTORY with a path to the folder that contains both files
 # when filling out the teams provisioning details, use -1 for optional integers, empty quotes "" for optional strings.
 
-# Create the LaunchDaemon plist
-cat << EOLAUNCHDAEMON > "/Library/LaunchDaemons/com.parsec.configure.plist"
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>com.parsec.configure</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/bin/bash</string>
-        <string>/path/to/your/script.sh</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-</dict>
-</plist>
-EOLAUNCHDAEMON
 
 # Set permissions for the LaunchDaemon plist
 chmod 644 "/Library/LaunchDaemons/com.parsec.configure.plist"

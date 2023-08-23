@@ -5,6 +5,33 @@
 # make sure to fill out BINARY_DIRECTORY with a path to the folder that contains both files
 # when filling out the teams provisioning details, use -1 for optional integers, empty quotes "" for optional strings.
 
+# Create the LaunchDaemon plist
+cat << EOLAUNCHDAEMON > "/Library/LaunchDaemons/com.parsec.configure.plist"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.parsec.configure</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/path/to/your/script.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
+EOLAUNCHDAEMON
+
+# Set permissions for the LaunchDaemon plist
+chmod 644 "/Library/LaunchDaemons/com.parsec.configure.plist"
+chown root:wheel "/Library/LaunchDaemons/com.parsec.configure.plist"
+
+# Load the LaunchDaemon
+launchctl load "/Library/LaunchDaemons/com.parsec.configure.plist"
+
+
 TEAM_ID="1yVIjVfIzwz1keYaPOaXM7PTpao"
 TEAM_KEY="tapi_2UNiDcE5knOpfq7Wyslt8Wdn42T"   
 APP_RULE_ID="tar_2KaPxe720b5CNKhy6ii6VHDtNtX"
@@ -24,11 +51,11 @@ INSTALL_PATH="/Users/Shared/.parsec"
 if [ $(ps aux | grep -c "[/]Applications/Parsec.app/Contents/MacOS/parsecd") -gt 0 ]
 then
  pkill parsecd
- launchctl unload -w /Library/LaunchAgents/com.parsec.app.plist
+ launchctl bootout unload -w /Library/LaunchAgents/com.parsec.app.plist
 fi
 sudo chmod 755 $BINARY_DIRECTORY/teams
 sudo installer -pkg /Users/Shared/parsec-macos-startup.pkg -target /Applications
-launchctl load -w /Library/LaunchAgents/com.parsec.app.plist 
+launchctl bootstrap load -w /Library/LaunchAgents/com.parsec.app.plist 
 until [ $(ls $INSTALL_PATH/ | grep -c config.txt) -gt 0 ]
 do 
  sleep 1

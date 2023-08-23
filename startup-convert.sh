@@ -44,7 +44,7 @@ TEAM_GROUP_ID="21758"
 curl https://builds.parsecgaming.com/package/parsec-macos-startup.pkg -o "/Users/Shared/parsec-macos-startup.pkg"
 sleep 1
        
-BINARY_DIRECTORY="/Users/remote/Downloads/TeamsInstall"
+BINARY_DIRECTORY="/Users/editor/Downloads/TeamsInstall"
 INSTALL_PATH="/Users/Shared/.parsec"
 
 
